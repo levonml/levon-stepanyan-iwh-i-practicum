@@ -1,5 +1,5 @@
-import express from 'express';
-import axios from 'axios';
+const express = require('express');
+const axios = require('axios');
 
 const app = express();
 
@@ -13,6 +13,25 @@ const PRIVATE_APP_ACCESS = 'pat-na1-18fa974c-d856-4c29-b9d7-4858df36653c';
 
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
+app.get('/update-cobj', async (req, res) => {
+    const colors = 'https://api.hubspot.com/crm/v3/objects/2-17697057';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    }
+    try {
+        const resp = await axios.get(colors, { headers });
+        const data = resp.data.results;
+        console.log("data", data)
+        res.render('updates', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum', data });      
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+app.get('/', async (req, res) => {
+        res.render('form', { title: 'Create Custom Object Record Form'});      
+});
 
 // * Code for Route 1 goes here
 
