@@ -10,13 +10,13 @@ app.use(express.json());
 
 // * Please include the private app access token in your repo BUT only an access token built in a TEST ACCOUNT. Don't do this practicum in your normal account.
 const PRIVATE_APP_ACCESS = 'pat-na1-18fa974c-d856-4c29-b9d7-4858df36653c';
-
+const customObjId = '2-17697057'
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
 
 app.get('/', async (req, res) => {
-    const colors = 'https://api.hubspot.com/crm/v3/objects/2-17697057';
+    const colors = `https://api.hubspot.com/crm/v3/objects/${customObjId}`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
@@ -43,9 +43,32 @@ app.get('/update-cobj', async (req, res) => {
 
 // * Code for Route 3 goes here
 app.post('/update-cobj', async (req, res) => {
+    
     const name = req.body.name
-    const asspciatedEnergy = req.body.asspciatedEnergy
-    const exampleInNature = req.body.exampleInNature
+    const associated_energy = req.body.asspciatedEnergy
+    const associated_word = req.body.associatedWord
+    const example_in_the_nature = req.body.exampleInNature
+    const url = `https://api.hubspot.com/crm/v3/objects/${customObjId}`
+	const config = {
+		headers: {
+			Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+			"Content-Type": "application/json",
+		},
+	}
+    const body = {
+        properties:{
+            name,
+            associated_energy,
+            associated_word,
+            example_in_the_nature
+        }
+    }
+    try{
+        const response = await axios.post(url, body, config)
+    }catch(err){
+        console.log("error from /update-cobj");
+    }
+    
 console.log(req.body)
 res.redirect('/')
 })
