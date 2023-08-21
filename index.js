@@ -43,6 +43,9 @@ app.get('/update-cobj', async (req, res) => {
 
 // * Code for Route 3 goes here
 app.post('/update-cobj', async (req, res) => {
+    const name = req.body.name
+    const asspciatedEnergy = req.body.asspciatedEnergy
+    const exampleInNature = req.body.exampleInNature
 console.log(req.body)
 res.redirect('/')
 })
