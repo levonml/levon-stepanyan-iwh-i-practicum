@@ -1,5 +1,8 @@
 const express = require('express');
 const axios = require('axios');
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const app = express();
 
@@ -16,16 +19,16 @@ const customObjId = '2-17697057'
 // * Code for Route 1 goes here
 
 app.get('/', async (req, res) => {
-    const colors = `https://api.hubspot.com/crm/v3/objects/${customObjId}`;
+    const colorsUrl = `https://api.hubspot.com/crm/v3/objects/${customObjId}?properties=example_in_the_nature,associated_energy,associated_word,example_in_the_nature,name`;
     const headers = {
         Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
         'Content-Type': 'application/json'
     }
     try {
-        const resp = await axios.get(colors, { headers });
+        const resp = await axios.get(colorsUrl, { headers });
         const data = resp.data.results;
         console.log("data", data)
-        res.render('homepage', { title: 'Update Custom Object Form | Integrating With HubSpot I Practicum', data });      
+        res.render('homepage', { title: 'Custom Object Table', data });      
     } catch (error) {
         console.error(error);
     }

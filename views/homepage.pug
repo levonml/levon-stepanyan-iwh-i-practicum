@@ -2,9 +2,25 @@
 doctype html
 html 
     head 
-        title= `${title}`
+        title= title
         meta(name="viewport" content="width=device-width, initial-scale=1")
         link(rel="stylesheet", href="/css/style.css")
     body   
-     a(href='/update-cobj') Add/Update this table
-         
+    
+    h1= title
+    a(href='/update-cobj') Add/Update this table
+
+    table
+      thead
+        tr
+          th Name
+          th Associated Energy
+          th Associated Word
+
+      tbody
+        each item in data
+          tr
+            td= item.properties.name
+            td= item.properties.associated_word
+            td= item.properties.associated_energy
+            td= example_in_the_nature     
