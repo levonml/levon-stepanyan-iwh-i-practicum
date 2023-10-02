@@ -12,8 +12,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // * Please include the private app access token in your repo BUT only an access token built in a TEST ACCOUNT. Don't do this practicum in your normal account.
+
 const PRIVATE_APP_ACCESS = 'pat-na1-18fa974c-d856-4c29-b9d7-4858df36653c';
 const customObjId = '2-17697057'
+
 // TODO: ROUTE 1 - Create a new app.get route for the homepage to call your custom object data. Pass this data along to the front-end and create a new pug template in the views folder.
 
 // * Code for Route 1 goes here
@@ -27,7 +29,7 @@ app.get('/', async (req, res) => {
     try {
         const resp = await axios.get(colorsUrl, { headers });
         const data = resp.data.results;
-        console.log("data", data)
+        //console.log("data", data)
         res.render('homepage', { title: 'Custom Object Table', data });      
     } catch (error) {
         console.error(error);
@@ -48,7 +50,7 @@ app.get('/update-cobj', async (req, res) => {
 app.post('/update-cobj', async (req, res) => {
     
     const name = req.body.name
-    const associated_energy = req.body.asspciatedEnergy
+    const associated_energy = req.body.associatedEnergy
     const associated_word = req.body.associatedWord
     const example_in_the_nature = req.body.exampleInNature
     const url = `https://api.hubspot.com/crm/v3/objects/${customObjId}`

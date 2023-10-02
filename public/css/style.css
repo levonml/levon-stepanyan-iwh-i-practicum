@@ -6,10 +6,38 @@ body, * {
     padding: 0;
 }
 
-form {
+table{
+    width: 30%;
+    margin: 10px 50% 0 5%;
+}
+form{
     flex-direction: column;
     display: flex;
     width: 30%;
     margin: 50px 50% 0 5%;
     gap: 10px;
+}
+
+h1, a {
+    margin: 50px auto 50px 5%;
+}
+td{
+    border: 1px solid black;
+    padding: 5px 10px;
+}
+th{
+    padding: 5px 10px;
+    background: pink;
+
+}
+input{ 
+    padding: 10px
+}
+button{
+    background: black;
+    color: white;
+    padding:10px;
+    width:100%;
+    border:none;
+    cursor: pointer
 }

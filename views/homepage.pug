@@ -14,8 +14,9 @@ html
       thead
         tr
           th Name
-          th Associated Energy
           th Associated Word
+          th Associated Energy
+          th Example in the nature
 
       tbody
         each item in data
@@ -23,4 +24,4 @@ html
             td= item.properties.name
             td= item.properties.associated_word
             td= item.properties.associated_energy
-            td= example_in_the_nature     
+            td= item.properties.example_in_the_nature     
